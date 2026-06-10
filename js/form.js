@@ -3,7 +3,7 @@ const form = document.querySelector("#form-adiciona");
 const templateTr = document.querySelector(".paciente");
 const erros = document.querySelector("#erro-msg");
 
-function criarPaciente(paciente){
+function criarPaciente(paciente) {
     const aux = templateTr.cloneNode(true);
     aux.querySelector(".info-nome").textContent = paciente.nome;
     aux.querySelector(".info-peso").textContent = paciente.peso;
@@ -20,7 +20,7 @@ form.addEventListener("submit", function (event) {
     const peso = Number(document.querySelector(".peso").value);
     const altura = Number(document.querySelector(".altura").value);
     const gordura = Number(document.querySelector(".gordura").value.trim());
-    const imc = (peso/Math.pow(altura,2)).toFixed(2);
+    const imc = (peso / Math.pow(altura, 2)).toFixed(2);
 
     const paciente = {
         nome,
@@ -30,25 +30,25 @@ form.addEventListener("submit", function (event) {
         imc
     };
 
-    if(validarNome(nome)){
-        return erros.push = "Nome invalido!";
+    if (validarNome(nome)) {
+        return erros.innerHTML = "Nome invalido!";
     }
-    if(!validarPeso(peso)){
-        return erros.push = "Peso invalido! ";
+    if (!validarPeso(peso)) {
+        return erros.innerHTML = "Peso invalido! ";
     }
-    if(!validarAltura(altura)){
-        return erros.push = "Altura invalido! ";
+    if (!validarAltura(altura)) {
+        return erros.innerHTML = "Altura invalido! ";
     }
-    if(!validarGordura(gordura)){
-        return erros.push = "Gordura invalido! ";
+    if (!validarGordura(gordura)) {
+        return erros.innerHTML = "Gordura invalido! ";
     }
 
     tbody.appendChild(criarPaciente(paciente));
 
     const dados = localStorage.getItem("dados");
-    
+
     const usuarios = dados ? JSON.parse(dados) : [];
-    
+
     usuarios.push(paciente);
 
     console.log(usuarios);
@@ -56,11 +56,11 @@ form.addEventListener("submit", function (event) {
     localStorage.setItem("dados", JSON.stringify(usuarios));
 
     form.reset();
-    
+
 });
 
 const dados = localStorage.getItem("dados");
-if(dados){
+if (dados) {
     const pacientes = JSON.parse(dados);
     pacientes.forEach((element) => {
         const tr = criarPaciente(element);
