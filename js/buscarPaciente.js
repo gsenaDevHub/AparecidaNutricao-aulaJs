@@ -1,4 +1,4 @@
-
+const link = "https://gsenadevhub.github.io/AparecidaNutricao-aulaJs/index.html";
 var botaoAdicionar = document.querySelector("#buscar-pacientes");
 var ativo = false
 
@@ -7,7 +7,7 @@ botaoAdicionar.addEventListener("click", function(){
     if(!ativo){
     async function carregarPacientes(){
     try{
-            let response = await fetch("https://raw.githubusercontent.com/matthewrpereira/pacientes-api/refs/heads/main/pacientes.json");
+            let response = await fetch(link);
             let data = await response.json();
             console.log(data);
     
@@ -23,7 +23,7 @@ botaoAdicionar.addEventListener("click", function(){
     carregarPacientes();
     //     var xhr = new XMLHttpRequest();
     
-    //     xhr.open("GET", "https://gsenadevhub.github.io/AparecidaNutricao-aulaJs/index.html");
+    //     xhr.open("GET", link);
         
     //     xhr.addEventListener("load", function(){
             
