@@ -1,4 +1,4 @@
-const link = "https://gsenadevhub.github.io/AparecidaNutricao-aulaJs/index.html";
+const link = "https://gsenadevhub.github.io/AparecidaNutricao-aulaJs/data.json";
 var botaoAdicionar = document.querySelector("#buscar-pacientes");
 var ativo = false
 
