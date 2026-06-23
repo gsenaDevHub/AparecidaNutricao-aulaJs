@@ -3,8 +3,18 @@ const form = document.querySelector("#form-adiciona");
 const templateTr = document.querySelector(".paciente");
 const erros = document.querySelector("#erro-msg");
 
+function exibirErros(mensagens) {
+    erros.innerHTML = "";
+    mensagens.forEach((mensagem) => {
+        const li = document.createElement("li");
+        li.innerHTML = mensagem;
+        erros.appendChild(li);
+    });
+}
+
 function criarPaciente(paciente) {
     const aux = templateTr.cloneNode(true);
+    aux.style.display = "";
     aux.querySelector(".info-nome").textContent = paciente.nome;
     aux.querySelector(".info-peso").textContent = paciente.peso;
     aux.querySelector(".info-altura").textContent = paciente.altura;
@@ -30,18 +40,35 @@ form.addEventListener("submit", function (event) {
         imc
     };
 
+    const mensagensErro = [];
+
     if (validarNome(nome)) {
-        return erros.innerHTML = "Nome invalido!";
+        mensagensErro.push("Nome inválido!");
     }
     if (!validarPeso(peso)) {
-        return erros.innerHTML = "Peso invalido! ";
+        mensagensErro.push("Peso inválido!");
     }
     if (!validarAltura(altura)) {
-        return erros.innerHTML = "Altura invalido! ";
+        mensagensErro.push("Altura inválida!");
     }
     if (!validarGordura(gordura)) {
-        return erros.innerHTML = "Gordura invalido! ";
+        mensagensErro.push("Gordura inválida!");
     }
+
+    if (mensagensErro.length > 0) {
+        exibirErros(mensagensErro);
+        return;
+    }
+    
+    erros.innerHTML = ""
+    setTimeout(()=>{
+        const li = document.createElement("li");
+        li.innerHTML = "Paciente adicionado com sucesso!";
+        li.style.color = "green";
+        erros.appendChild(li);
+    },500)
+    erros.innerHTML = ""
+    
 
     tbody.appendChild(criarPaciente(paciente));
 
@@ -53,7 +80,7 @@ form.addEventListener("submit", function (event) {
 
     console.log(usuarios);
 
-    localStorage.setItem("dados", JSON.stringify(usuarios));
+    localStorage.setItem("dados", JSON.stringify(usuarios));    
 
     form.reset();
 

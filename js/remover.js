@@ -20,8 +20,9 @@ tabela.addEventListener("dblclick", function(event) {
 
     if (linhaSelecionada) {
         linhaSelecionada.style.backgroundColor = "";
+        linhaSelecionada.style.color = "";  
     }
-
+    linha.style.color = "white";
     linha.style.backgroundColor = "blue";
     linhaSelecionada = linha;
 });
