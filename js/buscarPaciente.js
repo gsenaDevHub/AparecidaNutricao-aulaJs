@@ -24,7 +24,7 @@ botaoAdicionar.addEventListener("click", function(){
     if(!ativo){
         var xhr = new XMLHttpRequest();
     
-        xhr.open("GET", "../data.json");
+        xhr.open("GET", "https://gsenadevhub.github.io/AparecidaNutricao-aulaJs/data.json");
         
         xhr.addEventListener("load", function(){
             
